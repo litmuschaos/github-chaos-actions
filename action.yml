@@ -1,0 +1,8 @@
+name: 'Pod Delete'
+description: 'The kubectl command line program to delete a pod as a GitHub Action'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'terminal'
+  color: 'blue'
