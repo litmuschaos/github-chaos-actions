@@ -1,21 +1,27 @@
 FROM golang:latest
 
-LABEL version="1.0.0"
 LABEL name="Kubernetes Chaos"
-LABEL repository="http://github.com/mayadata-io/chaos-actions"
-LABEL homepage="http://github.com/mayadata-io/chaos-actions"
+LABEL repository="http://github.com/mayadata-io/github-chaos-actions"
+LABEL homepage="http://github.com/mayadata-io/github-chaos-actions"
 
-LABEL maintainer="Udit Gaurav <udit.gaurav@mayadata.io>"
+LABEL maintainer="LitmusChaos"
 LABEL com.github.actions.name="Kubernetes Chaos"
-LABEL com.github.actions.description="This Action can perform chaos engineering in Kubernetes system"
+LABEL com.github.actions.description="Different Chaos Experiment for Kubernetes"
 LABEL com.github.actions.icon="terminal"
 LABEL com.github.actions.color="blue"
 
-RUN apt-get update && apt-get install -y git
-RUN apt-get update && apt-get install -y ssh 
-RUN apt install ssh rsync
+ARG KUBECTL_VERSION=1.17.0
+ADD https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl /usr/local/bin/kubectl
+RUN chmod +x /usr/local/bin/kubectl
 
-COPY LICENSE README.md /
+RUN apt-get update && apt-get install -y git && \
+    apt-get install -y ssh && \
+    apt install ssh rsync
+
+RUN export GOPATH=$HOME/go
+RUN export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+COPY README.md /
 COPY entrypoint.sh /entrypoint.sh
 COPY experiments ./experiments
 

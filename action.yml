@@ -1,5 +1,5 @@
-name: 'Pod Delete'
-description: 'The kubectl command line program to delete a pod as a GitHub Action'
+name: 'Kubernetes Chaos'
+description: 'Different Chaos Experiment for Kubernetes'
 runs:
   using: 'docker'
   image: 'Dockerfile'

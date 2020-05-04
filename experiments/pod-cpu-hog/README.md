@@ -1,11 +1,11 @@
 # Pod CPU hog Hog Experiment
 
-This experiment causes CPU resource consumption on specified application containers by starting one or more md5sum calculation process on the special file /dev/zero. It Can test the application's resilience to potential slowness/unavailability of some replicas due to high CPU load. Visit <a href="https://docs.litmuschaos.io/docs/pod-cpu-hog/">pod cpu hog docs</a> for more info.
+This experiment causes CPU resource consumption on specified application containers by starting one or more md5sum calculation process on the special file /dev/zero. It Can test the application's resilience to potential slowness/unavailability of some replicas due to high CPU load. Visit <a href="https://docs.litmuschaos.io/docs/pod-cpu-hog/">pod cpu hog docs</a> for more info. To know more and get started with `chaos-actions` visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+
 
 A Sample workflow to run pod-cpu-hog experiment:
 
-
-`.github/workflows/push.yml`
+`.github/workflows/main.yml`
 
 ```yaml
 name: CI
@@ -23,16 +23,18 @@ jobs:
     - uses: actions/checkout@master
       
     - name: Running pod-cpu-hog chaos experiment
-      uses: mayadata-io/choas-actions@master
+      uses: mayadata-io/github-chaos-actions@master
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        ##if litmus is not installed
+        ##If litmus is not installed
         INSTALL_LITMUS: true
         ##Give application info under chaos
-        ##Currently supporting "deployment" applications.
         APP_NS: default
         APP_LABEL: run=nginx
+        APP_KIND: deployment
         EXPERIMENT_NAME: pod-cpu-hog
+        ##Custom images can also be used
+        EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest        
         TARGET_CONTAINER: nginx
         TOTAL_CHAOS_DURATION: 60
         CPU_CORES: 1
@@ -44,8 +46,73 @@ jobs:
 
 The application pod for pod-cpu-hog will be identified with the app info variables.
 
-`TARGET_CONTAINER` (Optional): Name of the container subjected to CPU stress. Default value is `nginx` container.
+**Supported Chaos Action Tunables**
 
-`TOTAL_CHAOS_DURATION` (Optional): The time duration for chaos insertion (seconds). Default value is `60s`
-
-`CPU_CORES` (Optional): Name of the container subjected to CPU stress Default value is `1` core
+<table>
+  <tr>
+    <th> Variables </th>
+    <th> Description </th>
+    <th> Specify In Chaos Action </th>
+    <th> Default Value </th>
+  </tr>
+  <tr> 
+    <td> EXPERIMENT_NAME </td>
+    <td> For Running pod cpu hog experiment keep it pod-cpu-hog</td>
+    <td> Mandatory </td>
+    <td> No default value </td>
+  </tr>
+    <tr> 
+    <td> TARGET_CONTAINER </td>
+    <td> Name of the container subjected to CPU stress </td>
+    <td> Optional </td>
+    <td> Default value is nginx</td>
+  </tr>
+  <tr> 
+    <td> CPU_CORES </td>
+    <td> Number of the cpu cores subjected to CPU stress </td>
+    <td> Optional </td>
+    <td> Default value is 1</td>
+  </tr>
+  <tr> 
+    <td> TOTAL_CHAOS_DURATION </td>
+    <td> The time duration for chaos injection (seconds) </td>
+    <td> Optional </td>
+    <td> Default value is 60s </td>
+  </tr>  
+  <tr> 
+    <td> APP_NS </td>
+    <td> Provide namespace of application under chaos </td>
+    <td> Optional </td>
+    <td> Default value is default</td>
+  </tr>
+  <tr>
+    <td> APP_LABEL  </td>
+    <td> Provide application label of application under chaos. </td>
+    <td> Optional </td>
+    <td> Default value is run=nginx </td>
+  </tr>
+  <tr>
+    <td> APP_KIND </td>
+    <td> Provide the kind of application   </td>
+    <td> Optional  </td>
+    <td> Default value is deployment </td>
+  </tr>
+  <tr>
+    <td> INSTALL_LITMUS </td>
+    <td> Keep it true to install litmus if litmus is not already installed.</td>
+    <td> Optional </td>
+    <td> Default value is not set to true </td>
+  </tr>
+  <tr>
+    <td> LITMUS_CLEANUP </td>
+    <td> Keep it true to uninstall litmus after chaos </td>
+    <td> Optional </td>
+    <td> Default value is not set to true </td>
+  </tr>
+  <tr>
+    <td> EXPERIMENT_IMAGE </td>
+    <td>We can provide cumstom image for running litmus chaos experiment </td>
+    <td> Optional </td>
+    <td> Default value is litmuschaos/ansible-runner:latest </td>
+  </tr>
+</table>

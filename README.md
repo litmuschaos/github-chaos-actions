@@ -1,6 +1,6 @@
 # Github Action for Chaos Engineering in Kubernetes
 
-This action provides a way to perform different chaos engineering experiments in the Kubernetes environment. It contains Litmus Chaos experiments to run the chaos and find the weakness in the system. For more details about chaos engineering in Kubernetes using Litmus visit <a href="https://docs.litmuschaos.io/docs/next/getstarted.html"> litmus-docs </a>.
+This action provides a way to perform different chaos experiments on the Kubernetes environment. It contains Litmus Chaos experiments to run the chaos and find a weakness in the system. For more details about chaos engineering in Kubernetes using Litmus visit <a href="https://docs.litmuschaos.io/docs/next/getstarted.html"> litmus-docs </a>.
 
 ## Pre-requisites
 
@@ -8,37 +8,39 @@ Kubernetes 1.11 or later.
 
 ## Overview.
 
-There are number of chaos experiments that can be performed using this github action you can find the experiments under experiment folder. These experiments are:
-
-- **Pod Delete**:  This experiment causes (forced/graceful) pod failure of random replicas of an application deployment. It tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod. Visit <a href="https://docs.litmuschaos.io/docs/pod-delete"> pod delete docs</a> for more info.
-
-- **Container Kill**: This experiment executes SIGKILL on container of random replicas of an application deployment. It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflows of an application. Visit <a href="https://docs.litmuschaos.io/docs/container-kill"> container kill docs</a> for more info.
-
-- **Node CPU Hog**: This experiment causes CPU resource exhaustion on the Kubernetes node. The experiment aims to verify resiliency of applications whose replicas may be evicted on account on nodes turning unschedulable (Not Ready) due to lack of CPU resources. Visit <a href="https://docs.litmuschaos.io/docs/node-cpu-hog"> node cpu hog docs</a> for more info.
-
-- **Node Memory Hog**: This experiment causes Memory exhaustion on the Kubernetes node. The experiment aims to verify resiliency of applications whose replicas may be evicted on account on nodes turning unschedulable due to lack of Memory resources. Visit <a href="https://docs.litmuschaos.io/docs/node-memory-hog"> node memory hog docs</a> for more info.
-
-- **Pod CPU Hog**: This experiment causes CPU resource consumption on specified application containers by starting one or more md5sum calculation process on the special file /dev/zero. It Can test the application's resilience to potential slowness/unavailability of some replicas due to high CPU load. Visit <a href="https://docs.litmuschaos.io/docs/pod-cpu-hog"> pod cpu hog docs</a> for more info.
-
-- **Pod Memory Hog**: This experiment causes Memory resource consumption on specified application containers by using dd command which will used to consume memory of the application container for certain duration of time. It can test the application's resilience to potential slowness/unavailability of some replicas due to high Memory load. Visit <a href="https://docs.litmuschaos.io/docs/pod-memory-hog"> Pod Memory hog docs</a> for more info.
-
-- **Pod Network Corruption**: Inject network packet corruption into application pod. Visit <a href="https://docs.litmuschaos.io/docs/pod-network-corruption"> pod network corruption docs</a> for more info.
-
-- **Pod Network Latency**: This experiment causes flaky access to application replica by injecting network delay using pumba. It injects latency on the specified container by starting a traffic control (tc) process with netem rules to add egress delays. It Can test the application's resilience to lossy/flaky network. Visit pod <a href="https://docs.litmuschaos.io/docs/pod-network-latency"> network latency docs</a> 
-
-- **Pod Network Loss**: This experiment injects chaos to disrupt network connectivity to kubernetes pods.The application pod should be healthy once chaos is stopped. It causes loss of access to application replica by injecting packet loss using pumba. Visit <a href="https://docs.litmuschaos.io/docs/pod-network-loss"> pod network loss docs</a>
+There is a number of chaos experiments that can be performed using `github-chaos-actions`, you can select the one which you want to perform, and for more details about the experiment please visit the <a href="https://docs.litmuschaos.io/docs/getstarted"> experiment docs </a>section.
 
 ## Run a chaos experiment using this action
 
 We just need  to follow these simple steps to run a chaos experiment using this action:
 
-- **Install Litmus**: Before running any experiment we need to setup litmus in the cluster. If litmus is not already installed then we can install it from action by just passing an evn `INSTALL-LITMUS` with `true` value or else we can keep it `false`. You can find more details under `setup` folder.
+- **Install Litmus**: Before running any experiment we need to setup litmus in the cluster. If litmus is not already installed then we can install it from `github-chaos-action` by just passing an ENV `INSTALL-LITMUS` with `true` value. This will bring up litmus with all infra components running in litmus namespace.
 
-- **Deploy Application**: After having litmus installed in the cluster we need to have an application runnning on which the chaos will be performed. We can create the application also by passing `APP_DEPLOY` as `true` in env along with other variables using this action. You can find more details under `setup` folder.
+- **Deploy Application**: After having litmus installed in the cluster we need to have an application running on which the chaos will be performed. The user has to create an application and pass the application details through action's ENV. The details involved application kind (deployment,statefulset,daemonset), application label, and namespace.
 
-- **Select experiment**: Select an experiment from experiment folder which you want to use. Get the details of how to run the experiment there only. A sample pod delte experiment workflow is shown here.
+- **Select experiment**: Select an experiment from the list of experiments mentioned in the below section which you want to perform on an application. Get the details of the experiment and how to run the actions for a particular experiment.
 
+**The different experiments that can be performed using `github-chaos-actions` are:**
 
+- **Pod Delete**:  This chaos action causes random (forced/graceful) pod delete of application deployment replicas. It tests deployment sanity (high availability & uninterrupted service) and recovery workflows of the application pod. Check a sample usage of <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/pod-delete/README.md">pod delete chaos action</a> and for more details about the experiment please visit <a href="https://docs.litmuschaos.io/docs/pod-delete"> pod delete docs</a>.
+
+- **Container Kill**: This chaos action executes SIGKILL on the container of random replicas of application deployment. It tests the deployment sanity (high availability & uninterrupted service) and recovery workflows of an application. Check a sample usage of <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/container-kill/README.md"> container kill chaos action </a>and for more details about the experiment please visit <a href="https://docs.litmuschaos.io/docs/container-kill"> container kill docs</a>.
+
+- **Node CPU Hog**: This chaos action causes CPU resource exhaustion on the Kubernetes node. The experiment aims to verify the resiliency of applications that operate under resource constraints wherein replicas may sometimes be evicted on account on nodes turning unschedulable (Not Ready) due to lack of CPU resources. Check a sample usage of <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/node-cpu-hog/README.md"> node cpu hog  chaos action </a>and for more details about the experiment please visit <a href="https://docs.litmuschaos.io/docs/node-cpu-hog"> node cpu hog docs</a> .
+
+- **Node Memory Hog**: This chaos action causes Memory exhaustion on the Kubernetes node. The experiment aims to verify the resiliency of applications that operate under resource constraints wherein replicas may sometimes be evicted on account on nodes turning unschedulable due to lack of Memory resources. Check a sample usage of<a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/node-memory-hog/README.md"> node memory hog chaos action  </a>and for more details about the experiment please visit <a href="https://docs.litmuschaos.io/docs/node-memory-hog"> node memory hog docs</a>.
+
+- **Pod CPU Hog**: This chaos action causes CPU resource consumption on specified application containers by starting one or more md5sum calculation process on the special file /dev/zero. It Can test the application's resilience to potential slowness/unavailability of some replicas due to high CPU load. Check a sample usage of<a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/pod-cpu-hog/README.md"> pod cpu hog chaos action </a>and for more details about the experiment please visit <a href="https://docs.litmuschaos.io/docs/pod-cpu-hog"> pod cpu hog docs</a>.
+
+- **Pod Memory Hog**: This chaos action causes Memory resource consumption on specified application containers by using dd command which will be used to consume memory of the application container for a certain duration of time. It can test the application's resilience to potential slowness/unavailability of some replicas due to high Memory load. Check a sample usage of<a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/pod-memory-hog/README.md"> pod memory hog chaos action </a>and for more details about the experiment please visit <a href="https://docs.litmuschaos.io/docs/pod-memory-hog"> Pod Memory hog docs</a>.
+
+- **Pod Network Corruption**: This chaos action Injects packet corruption on the specified container by starting a traffic control (tc) process with netem rules to add egress packet corruption. Corruption is injected via pumba library with command Pumba netem corruption bypassing the relevant network interface, packet-corruption-percentage, chaos duration, and regex filter for the container name. Check a sample usage of <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/pod-network-corruption/README.md">pod network corruption chaos action </a>and for more details about the experiment please visit <a href="https://docs.litmuschaos.io/docs/pod-network-corruption"> pod network corruption docs</a>.
+
+- **Pod Network Latency**: This chaos action causes flaky access to application replica by injecting network delay using Pumba. It injects latency on the specified container by starting a traffic control (tc) process with netem rules to add egress delays. It Can test the application's resilience to lossy/flaky network. Check a sample usage of<a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/pod-network-latency/README.md"> pod network latency </a>chaos action and for more details about the experiment please visit <a href="https://docs.litmuschaos.io/docs/pod-network-latency"> pod network latency docs</a>.
+
+- **Pod Network Loss**: This chaos action injects chaos to disrupt network connectivity to Kubernetes pods. The application pod should be healthy once chaos is stopped. It causes loss of access to application replica by injecting packet loss using Pumba. Check a sample usage of <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/pod-network-loss/README.md">pod network loss chaos action </a>and for more details about the experiment please visit <a href="https://docs.litmuschaos.io/docs/pod-network-loss"> pod network loss docs</a>
+
+ A sample pod delete experiment workflow:
 
 ## Usage
 
@@ -59,23 +61,27 @@ jobs:
     steps:
     - uses: actions/checkout@master
       
-    - name: Running pod delete chaos experiment
-      uses: mayadata-io/choas-actions@master
+    - name: Running Litmus pod delete chaos experiment
+      uses: mayadata-io/github-chaos-actions@master
       env:
+        ##Pass kubeconfig data from secret in base 64 encoded form 
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        ##if litmus is not installed
+        ##If litmus is not installed
         INSTALL_LITMUS: true
         ##Give application info under chaos
-        ##Currently supporting "deployment" applications.
         APP_NS: default
         APP_LABEL: run=nginx
+        APP_KIND: deployment
         EXPERIMENT_NAME: pod-delete
+        ##Custom image can also been used
+        EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest        
         TOTAL_CHAOS_DURATION: 30
         CHAOS_INTERVAL: 10
         FORCE: false
         ##Select true if you want to uninstall litmus after chaos
         LITMUS_CLEANUP: true
 ```
+Get the details of the chaos action tunables for pod delete (above example) <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/experiments/pod-delete/README.md">here</a>
 
 ## Secrets
 
@@ -87,10 +93,56 @@ cat $HOME/.kube/config | base64
 
 ## Environment Variables
 
-Add the environment variables as mentioned in the experiment readme under experiment folder. Some of the comman environment variables are mentioned here.
+Some comman environment variables used for running the `github-chaos-actions` are:
 
-`INSTALL_LITMUS` - (Optional): Keep it `true` if true to install litmus.
 
-`APP_DEPLOY` - (Optional): Keep it `true` to deploy a sample application. 
-
-`EXPERIMENT_NAME` - (Optional): Pass the name of chaos experiment. 
+<table>
+  <tr>
+    <th> Variables </th>
+    <th> Description </th>
+    <th> Specify In Chaos Action </th>
+    <th> Default Value </th>
+  </tr>
+  <tr> 
+    <td> EXPERIMENT_NAME </td>
+    <td> Give the experiment name you want to run(check the list of experiments available under experiment folder)</td>
+    <td> Mandatory </td>
+    <td> No default value </td>
+  </tr>
+  <tr> 
+    <td> APP_NS </td>
+    <td> Provide namespace of application under chaos </td>
+    <td> Optional </td>
+    <td> Default value is default</td>
+  </tr>
+  <tr>
+    <td> APP_LABEL  </td>
+    <td> Provide application label of application under chaos. </td>
+    <td> Optional </td>
+    <td> Default value is run=nginx </td>
+  </tr>
+  <tr>
+    <td> APP_KIND </td>
+    <td> Provide the kind of application   </td>
+    <td> Optional  </td>
+    <td> Default value is deployment </td>
+  </tr>
+  <tr>
+    <td> INSTALL_LITMUS </td>
+    <td> Keep it true to install litmus if litmus is not already installed.</td>
+    <td> Optional </td>
+    <td> Default value is not set to true </td>
+  </tr>
+  <tr>
+    <td> LITMUS_CLEANUP </td>
+    <td> Keep it true to uninstall litmus after chaos </td>
+    <td> Optional </td>
+    <td> Default value is not set to true </td>
+  </tr>
+  <tr>
+    <td> EXPERIMENT_IMAGE </td>
+    <td>We can provide cumstom image for running litmus chaos experiment </td>
+    <td> Optional </td>
+    <td> Default value is litmuschaos/ansible-runner:latest </td>
+  </tr>
+</table>
