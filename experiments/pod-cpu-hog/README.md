@@ -1,7 +1,8 @@
 # Pod CPU hog Hog Experiment
 
-This experiment causes CPU resource consumption on specified application containers by starting one or more md5sum calculation process on the special file /dev/zero. It Can test the application's resilience to potential slowness/unavailability of some replicas due to high CPU load. Visit <a href="https://docs.litmuschaos.io/docs/pod-cpu-hog/">pod cpu hog docs</a> for more info. To know more and get started with `chaos-actions` visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment causes CPU resource consumption on specified application containers by starting one or more md5sum calculation process on the special file /dev/zero. It Can test the application's resilience to potential slowness/unavailability of some replicas due to high CPU load. Check <a href="https://docs.litmuschaos.io/docs/pod-cpu-hog/">pod cpu hog docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
+#### Sample workflow 
 
 A Sample workflow to run pod-cpu-hog experiment:
 

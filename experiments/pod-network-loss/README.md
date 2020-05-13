@@ -1,6 +1,8 @@
 # Pod Network Loss Experiment
 
-This experiment injects chaos to disrupt network connectivity to kubernetes pods.The application pod should be healthy once chaos is stopped. It causes loss of access to application replica by injecting packet loss using pumba. Visit <a href="https://docs.litmuschaos.io/docs/pod-network-loss/">pod network loss</a> for more info. To know more and get started with `chaos-actions` visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment injects chaos to disrupt network connectivity to kubernetes pods.The application pod should be healthy once chaos is stopped. It causes loss of access to application replica by injecting packet loss using pumba. Check <a href="https://docs.litmuschaos.io/docs/pod-network-loss/">pod network loss</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+
+#### Sample workflow 
 
 A Sample workflow to run pod-network-loss experiment:
 

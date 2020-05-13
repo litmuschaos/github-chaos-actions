@@ -1,6 +1,8 @@
 # Container Kill Experiment
 
-This experiment executes SIGKILL on container of random replicas of an application deployment. It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflows of an application. Visit <a href="https://docs.litmuschaos.io/docs/container-kill/">container kill docs</a> for more info. To know more and get started with `chaos-actions` visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment executes SIGKILL on container of random replicas of an application deployment. It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflows of an application. Check <a href="https://docs.litmuschaos.io/docs/container-kill/">container kill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+
+#### Sample workflow 
 
 A Sample workflow to run the container-kill experiment:
 
@@ -35,7 +37,7 @@ jobs:
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest        
         TARGET_CONTAINER: nginx
-        TOTAL_CHAOS_DURATION: 30
+        TOTAL_CHAOS_DURATION: 20
         CHAOS_INTERVAL: 10
         ##Select true if you want to uninstall litmus after chaos
         LITMUS_CLEANUP: true        

@@ -1,10 +1,10 @@
 # Pod Memory Hog Experiment
 
-This experiment causes Memory resource consumption on specified application containers by using dd command which will used to consume memory of the application container for certain duration of time. It can test the application's resilience to potential slowness/unavailability of some replicas due to high Memory load. Visit <a href="https://docs.litmuschaos.io/docs/pod-memory-hog/">node memory hog docs</a> for more info. To know more and get started with `chaos-actions` visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment causes Memory resource consumption on specified application containers by using dd command which will used to consume memory of the application container for certain duration of time. It can test the application's resilience to potential slowness/unavailability of some replicas due to high Memory load. Check <a href="https://docs.litmuschaos.io/docs/pod-memory-hog/">node memory hog docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
+#### Sample workflow 
 
 A Sample workflow to run pod-memory-hog experiment:
-
 
 `.github/workflows/main.yml`
 

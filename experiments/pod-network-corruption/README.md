@@ -1,7 +1,8 @@
 # Pod Network Corruption Experiment
 
-This chaos action Injects packet corruption on the specified container by starting a traffic control (tc) process with netem rules to add egress packet corruption. Corruption is injected via pumba library with command pumba netem corruption by passing the relevant network interface, packet-corruption-percentage, chaos duration and regex filter for container name. Visit <a href="https://docs.litmuschaos.io/docs/pod-network-corruption/">pod network corruption docs</a> for more info.To know more and get started with `chaos-actions` visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This chaos action Injects packet corruption on the specified container by starting a traffic control (tc) process with netem rules to add egress packet corruption. Corruption is injected via pumba library with command pumba netem corruption by passing the relevant network interface, packet-corruption-percentage, chaos duration and regex filter for container name. Check <a href="https://docs.litmuschaos.io/docs/pod-network-corruption/">pod network corruption docs</a> for more info.To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
+#### Sample workflow 
 
 A Sample workflow to run pod network corruption experiment:
 

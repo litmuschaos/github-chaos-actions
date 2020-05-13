@@ -1,10 +1,13 @@
-# Node CPU Hog Experiment
+# Disk Fill Experiment
 
-This experiment causes CPU resource exhaustion on the Kubernetes node. The experiment aims to verify the resiliency of applications whose replicas may be evicted on account on nodes turning unschedulable (Not Ready) due to lack of CPU resources. Check <a href="https://docs.litmuschaos.io/docs/node-cpu-hog/">node cpu hog docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This chaos action causes Disk Stress by filling up the Ephemeral Storage of the Pod using one of it containers. It forced the Pod to get Evicted if the Pod exceeds it Ephemeral Storage Limit.It tests the Ephemeral Storage Limits, to ensure those parameters are sufficient. Check <a href="https://docs.litmuschaos.io/docs/disk-fill/">disk fill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+
+**NOTE**: Appropriate Ephemeral Storage Requests and Limits should be set for the application before running the chaos action. 
 
 #### Sample workflow 
 
-A Sample workflow to run node-cpu-hog experiment:
+A Sample workflow to run disk-fill experiment:
+
 
 `.github/workflows/main.yml`
 
@@ -23,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
       
-    - name: Running node-cpu-hog chaos experiment
+    - name: Running disk-fill chaos experiment
       uses: mayadata-io/github-chaos-actions@master
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
@@ -33,18 +36,18 @@ jobs:
         APP_NS: default
         APP_LABEL: run=nginx
         APP_KIND: deployment
-        EXPERIMENT_NAME: node-cpu-hog
+        EXPERIMENT_NAME: disk-fill
+        FILL_PERCENTAGE: 80
+        TARGET_CONTAINER: nginx
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest        
-        TOTAL_CHAOS_DURATION: 60
-        NODE_CPU_CORE: 2
         ##Select true if you want to uninstall litmus after chaos
         LITMUS_CLEANUP: true        
 ```
 
 ## Environment Variabels
 
-The application pod for node-cpu-hog will be identified with the app info variables.
+The application pod for disk-fill will be identified with the app info variables.
 
 **Supported Chaos Action Tunables**
 
@@ -57,22 +60,22 @@ The application pod for node-cpu-hog will be identified with the app info variab
   </tr>
   <tr> 
     <td> EXPERIMENT_NAME </td>
-    <td> For Running node cpu hog experiment keep it node-cpu-hog</td>
+    <td> For Running disk fill experiment keep it disk-fill</td>
     <td> Mandatory </td>
     <td> No default value </td>
   </tr>
   <tr> 
-    <td> NODE_CPU_CORE </td>
-    <td> Number of cores of node CPU to be consumed </td>
+    <td> TARGET_CONTAINER </td>
+    <td> Name of container which is subjected to disk-fill</td>
+    <td> Optional </td>
+    <td> Default value is nginx </td>
+  </tr>  
+  <tr> 
+    <td> FILL_PERCENTAGE </td>
+    <td> Percentage to fill the Ephemeral storage limit </td>
     <td> Optional </td>
     <td> Default value is 2</td>
   </tr>
-  <tr> 
-    <td> TOTAL_CHAOS_DURATION </td>
-    <td> The time duration for chaos injection (seconds) </td>
-    <td> Optional </td>
-    <td> Default value is 60s </td>
-  </tr>  
   <tr> 
     <td> APP_NS </td>
     <td> Provide namespace of application under chaos </td>
