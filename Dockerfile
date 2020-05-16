@@ -10,6 +10,9 @@ LABEL com.github.actions.description="Different Chaos Experiment for Kubernetes"
 LABEL com.github.actions.icon="terminal"
 LABEL com.github.actions.color="blue"
 
+ENV GOPATH=/github/home/go
+ENV PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
 ARG KUBECTL_VERSION=1.17.0
 ADD https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 RUN chmod +x /usr/local/bin/kubectl
