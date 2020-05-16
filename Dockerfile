@@ -18,9 +18,6 @@ RUN apt-get update && apt-get install -y git && \
     apt-get install -y ssh && \
     apt install ssh rsync
 
-RUN export GOPATH=$HOME/go
-RUN export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
 COPY README.md /
 COPY entrypoint.sh /entrypoint.sh
 COPY experiments ./experiments

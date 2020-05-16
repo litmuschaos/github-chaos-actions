@@ -8,6 +8,8 @@ echo "$KUBE_CONFIG_DATA" | base64 --decode > ${HOME}/.kube/config
 export KUBECONFIG=${HOME}/.kube/config
 
 ##Setup 
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 mkdir -p $HOME/go/src/github.com/mayadata-io
 rsync -az --delete ${GOPATH}/src/github.com/mayadata-io/
 cd ${GOPATH}/src/github.com/mayadata-io/
