@@ -39,7 +39,7 @@ jobs:
         TARGET_CONTAINER: nginx
         TOTAL_CHAOS_DURATION: 60
         NETWORK_INTERFACE: eth0
-      	NETWORK_LATENCY: 60000
+        NETWORK_LATENCY: 60000
         ##Select true if you want to uninstall litmus after chaos
         LITMUS_CLEANUP: true        
 ```
