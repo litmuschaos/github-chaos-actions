@@ -14,9 +14,9 @@ There is a number of chaos experiments that can be performed using `github-chaos
 
 We just need  to follow these simple steps to run a chaos experiment using this action:
 
-- **Install Litmus**: Before running any experiment we need to setup litmus in the cluster. If litmus is not already installed then we can install it from `github-chaos-action` by just passing an ENV `INSTALL-LITMUS` with `true` value. This will bring up litmus with all infra components running in litmus namespace.
+- **Deploy Application**: We need to have an application running on which the chaos will be performed. The user has to create an application and pass the application details through action's ENV. The details involved application kind (deployment,statefulset,daemonset), application label, and namespace.
 
-- **Deploy Application**: After having litmus installed in the cluster we need to have an application running on which the chaos will be performed. The user has to create an application and pass the application details through action's ENV. The details involved application kind (deployment,statefulset,daemonset), application label, and namespace.
+- **Install Litmus**: Before running any experiment we need to setup litmus in the cluster. If litmus is not already installed then we can install it from `github-chaos-action` by just passing an ENV `INSTALL-LITMUS` with `true` value. This will bring up litmus with all infra components running in litmus namespace.
 
 - **Select experiment**: Select an experiment from the list of experiments mentioned in the below section which you want to perform on an application. Get the details of the experiment and how to run the actions for a particular experiment.
 
@@ -59,12 +59,9 @@ jobs:
   build:
     
     runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@master
       
     - name: Running Litmus pod delete chaos experiment
-      uses: mayadata-io/github-chaos-actions@master
+      uses: mayadata-io/github-chaos-actions@v0.1.0
       env:
         ##Pass kubeconfig data from secret in base 64 encoded form 
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
