@@ -19,12 +19,9 @@ jobs:
   build:
     
     runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@master
-      
+    
     - name: Running pod-network-loss chaos experiment
-      uses: mayadata-io/github-chaos-actions@master
+      uses: mayadata-io/github-chaos-actions@v0.1.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
