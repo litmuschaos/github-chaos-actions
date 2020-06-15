@@ -1,4 +1,4 @@
-# Pod CPU hog Hog Experiment
+# Pod CPU Hog Experiment
 
 This experiment causes CPU resource consumption on specified application containers by starting one or more md5sum calculation process on the special file /dev/zero. It Can test the application's resilience to potential slowness/unavailability of some replicas due to high CPU load. Check <a href="https://docs.litmuschaos.io/docs/pod-cpu-hog/">pod cpu hog docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running pod-cpu-hog chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.1.0
+      uses: mayadata-io/github-chaos-actions@v0.1.1
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -32,7 +32,9 @@ jobs:
         APP_KIND: deployment
         EXPERIMENT_NAME: pod-cpu-hog
         ##Custom images can also be used
-        EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest        
+        EXPERIMENT_IMAGE: litmuschaos/ansible-runner
+        EXPERIMENT_IMAGE_TAG: latest
+        IMAGE_PULL_POLICY: Always      
         TARGET_CONTAINER: nginx
         TOTAL_CHAOS_DURATION: 60
         CPU_CORES: 1
@@ -109,8 +111,20 @@ The application pod for pod-cpu-hog will be identified with the app info variabl
   </tr>
   <tr>
     <td> EXPERIMENT_IMAGE </td>
-    <td>We can provide cumstom image for running litmus chaos experiment </td>
+    <td>We can provide custom image for running litmus chaos experiment </td>
     <td> Optional </td>
-    <td> Default value is litmuschaos/ansible-runner:latest </td>
+    <td> Default value is litmuschaos/ansible-runner </td>
   </tr>
+  <tr>
+    <td> EXPERIMENT_IMAGE_TAG </td>
+    <td> We can set the image tag while using custom image for the chaos experiment </td>
+    <td> Optional </td>
+    <td> Default value is latest </td>
+  </tr>  
+  <tr>
+    <td>IMAGE_PULL_POLICY </td>
+    <td> We can set the image pull policy while using custom image for running chaos experiment </td>
+    <td> Optional </td>
+    <td> Default value is Always </td>
+  </tr>  
 </table>
