@@ -140,8 +140,20 @@ Some comman environment variables used for running the `github-chaos-actions` ar
   </tr>
   <tr>
     <td> EXPERIMENT_IMAGE </td>
-    <td>We can provide cumstom image for running litmus chaos experiment </td>
+    <td> We can provide custom image for running chaos experiment </td>
     <td> Optional </td>
-    <td> Default value is litmuschaos/ansible-runner:latest </td>
+    <td> Default value is litmuschaos/ansible-runner </td>
   </tr>
+  <tr>
+    <td> EXPERIMENT_IMAGE_TAG </td>
+    <td> We can set the image tag while using custom image for the chaos experiment </td>
+    <td> Optional </td>
+    <td> Default value is latest </td>
+  </tr>  
+  <tr>
+    <td>IMAGE_PULL_POLICY </td>
+    <td> We can set the image pull policy while using custom image for running chaos experiment </td>
+    <td> Optional </td>
+    <td> Default value is Always </td>
+  </tr>  
 </table>

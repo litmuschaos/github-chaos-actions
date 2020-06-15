@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running container kill chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.1.0
+      uses: mayadata-io/github-chaos-actions@v0.1.1
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -33,7 +33,9 @@ jobs:
         APP_KIND: deployment
         EXPERIMENT_NAME: container-kill
         ##Custom images can also be used
-        EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest        
+        EXPERIMENT_IMAGE: litmuschaos/ansible-runner
+        EXPERIMENT_IMAGE_TAG: latest
+        IMAGE_PULL_POLICY: Always
         TARGET_CONTAINER: nginx
         TOTAL_CHAOS_DURATION: 20
         CHAOS_INTERVAL: 10
@@ -109,8 +111,20 @@ The application pod for container-kill will be identified with the app info vari
   </tr>
   <tr>
     <td> EXPERIMENT_IMAGE </td>
-    <td> We can provide cumstom image for running litmus chaos experiment </td>
+    <td> We can provide custom image for running chaos experiment </td>
     <td> Optional </td>
-    <td> Default value is litmuschaos/ansible-runner:latest </td>
+    <td> Default value is litmuschaos/ansible-runner </td>
+  </tr>
+  <tr>
+    <td> EXPERIMENT_IMAGE_TAG </td>
+    <td> We can set the image tag while using custom image for the chaos experiment </td>
+    <td> Optional </td>
+    <td> Default value is latest </td>
+  </tr>  
+  <tr>
+    <td>IMAGE_PULL_POLICY </td>
+    <td> We can set the image pull policy while using custom image for running chaos experiment </td>
+    <td> Optional </td>
+    <td> Default value is Always </td>
   </tr>
 </table>
