@@ -25,7 +25,7 @@ cd chaos-ci-lib
 ##Install litmus if it is not already installed
 if [ "$INSTALL_LITMUS" = "true" ]
 then
-  go test tests/install-litmus_test.go -v -count=1
+  go test litmus/install-litmus_test.go -v -count=1
 fi
 
 if [ "$EXPERIMENT_NAME" == "all" ]; then
@@ -42,5 +42,5 @@ fi
 ##litmus cleanup
 if [ "$LITMUS_CLEANUP" = "true" ]
 then
-  go test tests/uninstall-litmus_test.go -v -count=1
+  go test litmus/uninstall-litmus_test.go -v -count=1
 fi
