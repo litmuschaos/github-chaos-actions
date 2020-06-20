@@ -73,7 +73,9 @@ jobs:
         APP_KIND: deployment
         EXPERIMENT_NAME: pod-delete
         ##Custom image can also been used
-        EXPERIMENT_IMAGE: litmuschaos/ansible-runner:latest        
+        EXPERIMENT_IMAGE: litmuschaos/ansible-runner
+        EXPERIMENT_IMAGE_TAG: latest
+        IMAGE_PULL_POLICY: Always           
         TOTAL_CHAOS_DURATION: 30
         CHAOS_INTERVAL: 10
         FORCE: false
