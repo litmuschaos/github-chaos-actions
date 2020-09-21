@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running pod network corruption chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.1.1
+      uses: mayadata-io/github-chaos-actions@v0.2.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed

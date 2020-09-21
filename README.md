@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running Litmus pod delete chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.1.1
+      uses: mayadata-io/github-chaos-actions@v0.2.0
       env:
         ##Pass kubeconfig data from secret in base 64 encoded form 
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
