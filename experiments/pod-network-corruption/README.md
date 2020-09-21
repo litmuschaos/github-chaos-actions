@@ -38,6 +38,7 @@ jobs:
         TARGET_CONTAINER: nginx
         TOTAL_CHAOS_DURATION: 60
         NETWORK_INTERFACE: eth0
+        CONTAINER_RUNTIME: docker
         ##Select true if you want to uninstall litmus after chaos
         LITMUS_CLEANUP: true        
 ```
@@ -73,6 +74,12 @@ The application pod for pod-network-corruption will be identified with the app i
     <td> Optional </td>
     <td> Default value is nginx </td>
   </tr>
+  <tr> 
+    <td> CONTAINER_RUNTIME </td>
+    <td> Give the target container runtime </td>
+    <td> Optional </td>
+    <td> Default value is <code>'docker'</code> </td>
+  </tr>    
   <tr> 
     <td> TOTAL_CHAOS_DURATION </td>
     <td> The time duration for chaos injection (seconds) </td>

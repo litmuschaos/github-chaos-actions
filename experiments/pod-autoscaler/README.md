@@ -1,52 +1,47 @@
-# Pod Network Latency Experiment
+# Pod Autoscaler Experiment
 
-This experiment causes flaky access to application replica by injecting network delay using pumba. It injects latency on the specified container by starting a traffic control (tc) process with netem rules to add egress delays. It Can test the application's resilience to lossy/flaky network. Check <a href="https://docs.litmuschaos.io/docs/pod-network-latency/">pod network latency</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment Scale the application replicas and test the node autoscaling on cluster. Check <a href="https://docs.litmuschaos.io/docs/pod-autoscaler/">pod scaler docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
 #### Sample workflow 
 
-A Sample workflow to run pod-network-latency experiment:
+A Sample workflow to run pod autoscaler experiment:
 
-`.github/workflows/push.yml`
+`.github/workflows/main.yml`
 
 ```yaml
 name: CI
-
 on:
   push:
     branches: [ master ]
-
 jobs:
   build:
     
     runs-on: ubuntu-latest
-      
-    - name: Running pod-network-latency chaos experiment
+          
+    - name: Running pod autoscaler chaos experiment
       uses: mayadata-io/github-chaos-actions@v0.1.1
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        #If litmus is not installed
+        ##If litmus is not installed
         INSTALL_LITMUS: true
         ##Give application info under chaos
         APP_NS: default
         APP_LABEL: run=nginx
         APP_KIND: deployment
-        EXPERIMENT_NAME: pod-network-latency
+        EXPERIMENT_NAME: pod-autoscaler
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/ansible-runner
         EXPERIMENT_IMAGE_TAG: latest
-        IMAGE_PULL_POLICY: Always        
-        TARGET_CONTAINER: nginx
+        IMAGE_PULL_POLICY: Always     
         TOTAL_CHAOS_DURATION: 60
-        NETWORK_INTERFACE: eth0
-        NETWORK_LATENCY: 60000
-        CONTAINER_RUNTIME: docker
         ##Select true if you want to uninstall litmus after chaos
-        LITMUS_CLEANUP: true        
+        LITMUS_CLEANUP: true
 ```
 
 ## Environment Variabels
 
-The application pod for pod-network-latency will be identified with the app info variables.
+The application pod for pod-autoscaler will be identified with the app info variables.
+
 
 **Supported Chaos Action Tunables**
 
@@ -59,40 +54,21 @@ The application pod for pod-network-latency will be identified with the app info
   </tr>
   <tr> 
     <td> EXPERIMENT_NAME </td>
-    <td> For Running pod network latency experiment keep it pod-network-latency </td>
+    <td> For Running pod autoscaler experiment keep it pod-autoscaler </td>
     <td> Mandatory </td>
     <td> No default value </td>
   </tr>
   <tr> 
-    <td> NETWORK_INTERFACE </td>
-    <td> Name of ethernet interface considered for shaping traffic </td>
+    <td> CHAOS_INTERVAL </td>
+    <td> 	Time interval b/w two successive pod failures (in sec) </td>
     <td> Optional </td>
-    <td> Default value is eth0 </td>
-  </tr>
-    <tr> 
-    <td> NETWORK_LATENCY </td>
-    <td> The latency/delay in milliseconds </td>
-    <td> Optional </td>
-    <td> Default (60000ms) </td>
-  </tr>
-  <tr> 
-    <td> CONTAINER_RUNTIME </td>
-    <td> Give the target container runtime </td>
-    <td> Optional </td>
-    <td> Default value is <code>'docker'</code> </td>
-  </tr>  
-  <tr> 
-    <td> TARGET_CONTAINER </td>
-    <td> Name of container which is subjected to network latency. </td>
-    <td> Optional </td>
-    <td> Default value is nginx </td>
+    <td> Default value is 5s </td>
   </tr>
   <tr> 
     <td> TOTAL_CHAOS_DURATION </td>
     <td> The time duration for chaos injection (seconds) </td>
     <td> Optional </td>
-    <td> Default value is 120s </td>
-  </tr>  
+    <td> Defaults to 15s, NOTE: Overall run duration of the experiment may exceed the TOTAL_CHAOS_DURATION by a few min </td>
   <tr> 
     <td> APP_NS </td>
     <td> Provide namespace of application under chaos </td>
@@ -124,7 +100,6 @@ The application pod for pod-network-latency will be identified with the app info
     <td> Default value is not set to true </td>
   </tr>
   <tr>
-  <tr>
     <td> EXPERIMENT_IMAGE </td>
     <td> We can provide custom image for running chaos experiment </td>
     <td> Optional </td>
@@ -143,3 +118,4 @@ The application pod for pod-network-latency will be identified with the app info
     <td> Default value is Always </td>
   </tr>  
 </table>
+
