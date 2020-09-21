@@ -39,6 +39,7 @@ jobs:
         TARGET_CONTAINER: nginx
         TOTAL_CHAOS_DURATION: 20
         CHAOS_INTERVAL: 10
+        CONTAINER_RUNTIME: docker
         ##Select true if you want to uninstall litmus after chaos
         LITMUS_CLEANUP: true        
 ```
@@ -109,6 +110,12 @@ The application pod for container-kill will be identified with the app info vari
     <td> Optional </td>
     <td> Default value is not set to true </td>
   </tr>
+  <tr> 
+    <td> CONTAINER_RUNTIME </td>
+    <td> Give the target container runtime </td>
+    <td> Optional </td>
+    <td> Default value is <code>'docker'</code> </td>
+  </tr>  
   <tr>
     <td> EXPERIMENT_IMAGE </td>
     <td> We can provide custom image for running chaos experiment </td>
