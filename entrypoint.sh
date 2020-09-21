@@ -16,19 +16,19 @@ mkdir -p $HOME/go/src/github.com/mayadata-io
 cd ${GOPATH}/src/github.com/mayadata-io/
 dir=${GOPATH}/src/github.com/mayadata-io/chaos-ci-lib
 
-if [ ! -d $dir ]
+if [[ ! -d $dir ]]
 then
   git clone -b v0.2.0 --single-branch  https://github.com/mayadata-io/chaos-ci-lib.git
 fi
 cd chaos-ci-lib
 
 ##Install litmus if it is not already installed
-if [ "$INSTALL_LITMUS" = "true" ]
+if [[ "$INSTALL_LITMUS" = "true" ]]
 then
   go test litmus/install-litmus_test.go -v -count=1
 fi
 
-if [ "$EXPERIMENT_NAME" == "all" ]; then
+if [[ "$EXPERIMENT_NAME" == "all" ]]; then
 ## Run all BDDs 
   cd tests
   ginkgo -nodes=${PARALLEL_EXECUTION}
@@ -40,7 +40,7 @@ else
 fi
 
 ##litmus cleanup
-if [ "$LITMUS_CLEANUP" = "true" ]
+if [[ "$LITMUS_CLEANUP" = "true" ]]
 then
   go test litmus/uninstall-litmus_test.go -v -count=1
 fi

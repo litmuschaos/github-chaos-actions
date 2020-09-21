@@ -80,7 +80,7 @@ jobs:
         APP_KIND: deployment
         EXPERIMENT_NAME: pod-delete
         ##Custom image can also been used
-        EXPERIMENT_IMAGE: litmuschaos/ansible-runner
+        EXPERIMENT_IMAGE: litmuschaos/go-runner
         EXPERIMENT_IMAGE_TAG: latest
         IMAGE_PULL_POLICY: Always           
         TOTAL_CHAOS_DURATION: 30
@@ -151,7 +151,7 @@ Some comman environment variables used for running the `github-chaos-actions` ar
     <td> EXPERIMENT_IMAGE </td>
     <td> We can provide custom image for running chaos experiment </td>
     <td> Optional </td>
-    <td> Default value is litmuschaos/ansible-runner </td>
+    <td> Default value is litmuschaos/go-runner </td>
   </tr>
   <tr>
     <td> EXPERIMENT_IMAGE_TAG </td>
