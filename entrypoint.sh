@@ -34,8 +34,8 @@ if [ "$EXPERIMENT_NAME" == "all" ]; then
   ginkgo -nodes=${PARALLEL_EXECUTION}
   cd ..
 
-else
-## Run the selected chaos experiment template
+elif [ ! -z "$EXPERIMENT_NAME" ]; then
+## Run the selected chaos experiment
   go test tests/${EXPERIMENT_NAME}_test.go -v -count=1 -timeout=${TEST_TIMEOUT}s
 fi
 
