@@ -1,4 +1,4 @@
-# Github Action for Chaos Engineering in Kubernetes
+# GitHub Action for Chaos Engineering in Kubernetes
 
 This action provides a way to perform different chaos experiments on the Kubernetes environment. It contains Litmus Chaos experiments to run the chaos and find a weakness in the system. For more details about chaos engineering in Kubernetes using Litmus visit <a href="https://docs.litmuschaos.io/docs/next/getstarted.html"> litmus-docs </a>.
 
