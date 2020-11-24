@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running node-io-stress chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.2.0
+      uses: mayadata-io/github-chaos-actions@v0.3.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##if litmus is not installed

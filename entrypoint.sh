@@ -12,18 +12,18 @@ echo "$KUBE_CONFIG_DATA" | base64 --decode > ${HOME}/.kube/config
 export KUBECONFIG=${HOME}/.kube/config
 
 ##Setup 
-mkdir -p $HOME/go/src/github.com/mayadata-io
-cd ${GOPATH}/src/github.com/mayadata-io/
-dir=${GOPATH}/src/github.com/mayadata-io/chaos-ci-lib
+mkdir -p $HOME/go/src/github.com/litmuschaos
+cd ${GOPATH}/src/github.com/litmuschaos/
+dir=${GOPATH}/src/github.com/litmuschaos/chaos-ci-lib
 
 if [ ! -d $dir ]
 then
-  git clone -b v0.2.0 --single-branch  https://github.com/mayadata-io/chaos-ci-lib.git
+  git clone -b v0.3.0 --single-branch https://github.com/litmuschaos/chaos-ci-lib.git
 fi
 cd chaos-ci-lib
 
 ##Install litmus if it is not already installed
-if [ "$INSTALL_LITMUS" = "true" ]
+if [ "$INSTALL_LITMUS" == "true" ]
 then
   go test litmus/install-litmus_test.go -v -count=1
 fi
@@ -40,7 +40,7 @@ else
 fi
 
 ##litmus cleanup
-if [ "$LITMUS_CLEANUP" = "true" ]
+if [ "$LITMUS_CLEANUP" == "true" ]
 then
   go test litmus/uninstall-litmus_test.go -v -count=1
 fi
