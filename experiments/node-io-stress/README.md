@@ -1,7 +1,7 @@
 # Node IO Stress Experiment
 
 This experiment causes IO stress on the Kubernetes node. The experiment aims to verify the resiliency of applications that share this disk resource for ephemeral or persistent storage purposes.
-. Check <a href="https://docs.litmuschaos.io/docs/node-io-stress/">node io stress docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+. Check <a href="https://docs.litmuschaos.io/docs/node-io-stress/">node io stress docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
 #### Sample workflow 
 
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running node-io-stress chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.3.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##if litmus is not installed

@@ -1,6 +1,6 @@
 # Node Memory Hog Experiment
 
-This experiment causes Memory exhaustion on the Kubernetes node. The experiment aims to verify the resiliency of applications whose replicas may be evicted on account on nodes turning unschedulable due to lack of Memory resources. Check <a href="https://docs.litmuschaos.io/docs/node-memory-hog/">node memory hog docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment causes Memory exhaustion on the Kubernetes node. The experiment aims to verify the resiliency of applications whose replicas may be evicted on account on nodes turning unschedulable due to lack of Memory resources. Check <a href="https://docs.litmuschaos.io/docs/node-memory-hog/">node memory hog docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
 #### Sample workflow 
 
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running node-memory-hog chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.3.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##if litmus is not installed
