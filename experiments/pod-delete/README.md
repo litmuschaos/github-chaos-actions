@@ -1,6 +1,6 @@
 # Pod Delete Experiment
 
-This experiment causes (forced/graceful) pod failure of random replicas of an application deployment. It tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod. Check <a href="https://docs.litmuschaos.io/docs/pod-delete/">pod delete docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment causes (forced/graceful) pod failure of random replicas of an application deployment. It tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod. Check <a href="https://docs.litmuschaos.io/docs/pod-delete/">pod delete docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
 #### Sample workflow 
 
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
           
     - name: Running pod delete chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.3.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed

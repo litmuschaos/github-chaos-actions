@@ -1,6 +1,6 @@
 # Container Kill Experiment
 
-This experiment executes SIGKILL on container of random replicas of an application deployment. It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflows of an application. Check <a href="https://docs.litmuschaos.io/docs/container-kill/">container kill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment executes SIGKILL on container of random replicas of an application deployment. It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflows of an application. Check <a href="https://docs.litmuschaos.io/docs/container-kill/">container kill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
 #### Sample workflow 
 
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running container kill chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.3.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed

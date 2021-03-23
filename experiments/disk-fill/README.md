@@ -1,6 +1,6 @@
 # Disk Fill Experiment
 
-This chaos action causes Disk Stress by filling up the Ephemeral Storage of the Pod using one of it containers. It forced the Pod to get Evicted if the Pod exceeds it Ephemeral Storage Limit.It tests the Ephemeral Storage Limits, to ensure those parameters are sufficient. Check <a href="https://docs.litmuschaos.io/docs/disk-fill/">disk fill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This chaos action causes Disk Stress by filling up the Ephemeral Storage of the Pod using one of it containers. It forced the Pod to get Evicted if the Pod exceeds it Ephemeral Storage Limit.It tests the Ephemeral Storage Limits, to ensure those parameters are sufficient. Check <a href="https://docs.litmuschaos.io/docs/disk-fill/">disk fill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
 
 **NOTE**: Appropriate Ephemeral Storage Requests and Limits should be set for the application before running the chaos action. 
 
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running disk-fill chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.3.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
