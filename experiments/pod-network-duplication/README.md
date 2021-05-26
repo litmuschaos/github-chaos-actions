@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
       
     - name: Running pod network duplication chaos experiment
-      uses: litmuschaos/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.3.1
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
