@@ -30,13 +30,13 @@ fi
 
 if [ "$EXPERIMENT_NAME" == "all" ]; then
 ## Run all BDDs 
-  cd tests
+  cd experiments
   ginkgo -nodes=${PARALLEL_EXECUTION}
   cd ..
 
 elif [ ! -z "$EXPERIMENT_NAME" ]; then
 ## Run the selected chaos experiment
-  go test tests/${EXPERIMENT_NAME}_test.go -v -count=1 -timeout=${TEST_TIMEOUT}s
+  go test experiments/${EXPERIMENT_NAME}_test.go -v -count=1 -timeout=${TEST_TIMEOUT}s
 fi
 
 ##litmus cleanup
