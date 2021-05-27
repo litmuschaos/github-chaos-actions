@@ -62,7 +62,7 @@ jobs:
           EXPERIMENT_IMAGE: litmuschaos/go-runner
           EXPERIMENT_IMAGE_TAG: ci
           JOB_CLEANUP_POLICY: delete 
-          
+
 
       - name: Running node-memory-hog chaos experiment
         uses: litmuschaos/github-chaos-actions@master
@@ -86,7 +86,7 @@ jobs:
       - name: Running pod-memory-hog chaos experiment
         uses: litmuschaos/github-chaos-actions@master
         env:
-          EXPERIMENT_NAME: pod-cpu-hog
+          EXPERIMENT_NAME: pod-memory-hog
           EXPERIMENT_IMAGE: litmuschaos/go-runner
           EXPERIMENT_IMAGE_TAG: ci
           JOB_CLEANUP_POLICY: delete       
