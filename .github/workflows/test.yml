@@ -23,10 +23,6 @@ jobs:
           kind get kubeconfig --internal >$HOME/.kube/config
           kubectl get nodes            
 
-      - name: Load image on the nodes of the cluster
-        run: |
-          kind load docker-image --name=kind litmuschaos/go-runner:ci
-
       - name: Deploy a sample application for chaos injection
         run: |
           kubectl apply -f https://raw.githubusercontent.com/litmuschaos/chaos-ci-lib/master/app/nginx.yml
@@ -66,7 +62,7 @@ jobs:
           EXPERIMENT_IMAGE: litmuschaos/go-runner
           EXPERIMENT_IMAGE_TAG: ci
           JOB_CLEANUP_POLICY: delete 
-          
+
 
       - name: Running node-memory-hog chaos experiment
         uses: litmuschaos/github-chaos-actions@master
@@ -90,7 +86,7 @@ jobs:
       - name: Running pod-memory-hog chaos experiment
         uses: litmuschaos/github-chaos-actions@master
         env:
-          EXPERIMENT_NAME: pod-cpu-hog
+          EXPERIMENT_NAME: pod-memory-hog
           EXPERIMENT_IMAGE: litmuschaos/go-runner
           EXPERIMENT_IMAGE_TAG: ci
           JOB_CLEANUP_POLICY: delete       
