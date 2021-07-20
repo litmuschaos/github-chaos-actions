@@ -1,8 +1,8 @@
 # Pod Network Corruption Experiment
 
-This chaos action Injects packet corruption on the specified container by starting a traffic control (tc) process with netem rules to add egress packet corruption. Corruption is injected via pumba library with command pumba netem corruption by passing the relevant network interface, packet-corruption-percentage, chaos duration and regex filter for container name. Check <a href="https://docs.litmuschaos.io/docs/pod-network-corruption/">pod network corruption docs</a> for more info.To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This chaos action Injects packet corruption on the specified container by starting a traffic control (tc) process with netem rules to add egress packet corruption. Corruption is injected via pumba library with command pumba netem corruption by passing the relevant network interface, packet-corruption-percentage, chaos duration and regex filter for container name. Check <a href="https://docs.litmuschaos.io/docs/pod-network-corruption/">pod network corruption docs</a> for more info.To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/v0.4.x/README.md">github-chaos-actions</a>.
 
-#### Sample workflow 
+#### Sample workflow
 
 A Sample workflow to run pod network corruption experiment:
 
@@ -17,11 +17,11 @@ on:
 
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
-      
+
     - name: Running pod network corruption chaos experiment
-      uses: litmuschaos/github-chaos-actions@v0.3.1
+      uses: litmuschaos/github-chaos-actions@v0.4.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -34,13 +34,13 @@ jobs:
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/go-runner
         EXPERIMENT_IMAGE_TAG: latest
-        IMAGE_PULL_POLICY: Always      
+        IMAGE_PULL_POLICY: Always
         TARGET_CONTAINER: nginx
         TOTAL_CHAOS_DURATION: 60
         NETWORK_INTERFACE: eth0
         CONTAINER_RUNTIME: docker
         ##Select true if you want to uninstall litmus after chaos
-        LITMUS_CLEANUP: true        
+        LITMUS_CLEANUP: true
 ```
 
 ## Environment Variabels

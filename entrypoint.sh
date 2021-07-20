@@ -18,7 +18,7 @@ dir=${GOPATH}/src/github.com/litmuschaos/chaos-ci-lib
 
 if [ ! -d $dir ]
 then
-  git clone https://github.com/litmuschaos/chaos-ci-lib.git
+  git clone -b v0.4.0 --single-branch https://github.com/litmuschaos/chaos-ci-lib.git
 fi
 cd chaos-ci-lib
 
