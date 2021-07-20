@@ -1,11 +1,10 @@
 # Container Kill Experiment
 
-This experiment executes SIGKILL on container of random replicas of an application deployment. It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflows of an application. Check <a href="https://docs.litmuschaos.io/docs/container-kill/">container kill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment executes SIGKILL on container of random replicas of an application deployment. It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflows of an application. Check <a href="https://docs.litmuschaos.io/docs/container-kill/">container kill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/v0.4.x/README.md">github-chaos-actions</a>.
 
-#### Sample workflow 
+#### Sample workflow
 
 A Sample workflow to run the container-kill experiment:
-
 
 `.github/workflows/main.yml`
 
@@ -18,11 +17,11 @@ on:
 
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
-      
+
     - name: Running container kill chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.4.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -41,11 +40,12 @@ jobs:
         CHAOS_INTERVAL: 10
         CONTAINER_RUNTIME: docker
         ##Select true if you want to uninstall litmus after chaos
-        LITMUS_CLEANUP: true        
+        LITMUS_CLEANUP: true
 ```
+
 ## Environment Variabels
 
-The application pod for container-kill will be identified with the app info variables. 
+The application pod for container-kill will be identified with the app info variables.
 
 **Supported Chaos Action Tunables**
 

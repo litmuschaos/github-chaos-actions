@@ -1,8 +1,8 @@
 FROM golang:latest
 
 LABEL name="Kubernetes Chaos"
-LABEL repository="http://github.com/mayadata-io/github-chaos-actions"
-LABEL homepage="http://github.com/mayadata-io/github-chaos-actions"
+LABEL repository="http://github.com/litmuschaos/github-chaos-actions"
+LABEL homepage="http://github.com/litmuschaos/github-chaos-actions"
 
 LABEL maintainer="LitmusChaos"
 LABEL com.github.actions.name="Kubernetes Chaos"

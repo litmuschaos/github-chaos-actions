@@ -1,13 +1,12 @@
 # Disk Fill Experiment
 
-This chaos action causes Disk Stress by filling up the Ephemeral Storage of the Pod using one of it containers. It forced the Pod to get Evicted if the Pod exceeds it Ephemeral Storage Limit.It tests the Ephemeral Storage Limits, to ensure those parameters are sufficient. Check <a href="https://docs.litmuschaos.io/docs/disk-fill/">disk fill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This chaos action causes Disk Stress by filling up the Ephemeral Storage of the Pod using one of it containers. It forced the Pod to get Evicted if the Pod exceeds it Ephemeral Storage Limit.It tests the Ephemeral Storage Limits, to ensure those parameters are sufficient. Check <a href="https://docs.litmuschaos.io/docs/disk-fill/">disk fill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/v0.4.x/README.md">github-chaos-actions</a>.
 
-**NOTE**: Appropriate Ephemeral Storage Requests and Limits should be set for the application before running the chaos action. 
+**NOTE**: Appropriate Ephemeral Storage Requests and Limits should be set for the application before running the chaos action.
 
-#### Sample workflow 
+#### Sample workflow
 
 A Sample workflow to run disk-fill experiment:
-
 
 `.github/workflows/main.yml`
 
@@ -20,11 +19,11 @@ on:
 
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
-      
+
     - name: Running disk-fill chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.4.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -39,9 +38,9 @@ jobs:
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/go-runner
         EXPERIMENT_IMAGE_TAG: latest
-        IMAGE_PULL_POLICY: Always    
+        IMAGE_PULL_POLICY: Always
         ##Select true if you want to uninstall litmus after chaos
-        LITMUS_CLEANUP: true        
+        LITMUS_CLEANUP: true
 ```
 
 ## Environment Variabels

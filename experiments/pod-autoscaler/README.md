@@ -1,8 +1,8 @@
 # Pod Autoscaler Experiment
 
-This experiment Scale the application replicas and test the node autoscaling on cluster. Check <a href="https://docs.litmuschaos.io/docs/pod-autoscaler/">pod scaler docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment Scale the application replicas and test the node autoscaling on cluster. Check <a href="https://docs.litmuschaos.io/docs/pod-autoscaler/">pod scaler docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/v0.4.x/README.md">github-chaos-actions</a>.
 
-#### Sample workflow 
+#### Sample workflow
 
 A Sample workflow to run pod autoscaler experiment:
 
@@ -15,11 +15,11 @@ on:
     branches: [ master ]
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
-          
+
     - name: Running pod autoscaler chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.4.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -32,7 +32,7 @@ jobs:
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/go-runner
         EXPERIMENT_IMAGE_TAG: latest
-        IMAGE_PULL_POLICY: Always     
+        IMAGE_PULL_POLICY: Always
         TOTAL_CHAOS_DURATION: 60
         ##Select true if you want to uninstall litmus after chaos
         LITMUS_CLEANUP: true
@@ -41,7 +41,6 @@ jobs:
 ## Environment Variabels
 
 The application pod for pod-autoscaler will be identified with the app info variables.
-
 
 **Supported Chaos Action Tunables**
 
@@ -118,4 +117,3 @@ The application pod for pod-autoscaler will be identified with the app info vari
     <td> Default value is Always </td>
   </tr>  
 </table>
-

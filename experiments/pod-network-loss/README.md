@@ -1,8 +1,8 @@
 # Pod Network Loss Experiment
 
-This experiment injects chaos to disrupt network connectivity to kubernetes pods.The application pod should be healthy once chaos is stopped. It causes loss of access to application replica by injecting packet loss using pumba. Check <a href="https://docs.litmuschaos.io/docs/pod-network-loss/">pod network loss</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/mayadata-io/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment injects chaos to disrupt network connectivity to kubernetes pods.The application pod should be healthy once chaos is stopped. It causes loss of access to application replica by injecting packet loss using pumba. Check <a href="https://docs.litmuschaos.io/docs/pod-network-loss/">pod network loss</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/v0.4.x/README.md">github-chaos-actions</a>.
 
-#### Sample workflow 
+#### Sample workflow
 
 A Sample workflow to run pod-network-loss experiment:
 
@@ -17,11 +17,11 @@ on:
 
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
-    
+
     - name: Running pod-network-loss chaos experiment
-      uses: mayadata-io/github-chaos-actions@v0.3.0
+      uses: litmuschaos/github-chaos-actions@v0.4.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -34,14 +34,14 @@ jobs:
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/go-runner
         EXPERIMENT_IMAGE_TAG: latest
-        IMAGE_PULL_POLICY: Always      
+        IMAGE_PULL_POLICY: Always
         TARGET_CONTAINER: nginx
         TOTAL_CHAOS_DURATION: 60
         NETWORK_INTERFACE: eth0
         NETWORK_PACKET_LOSS_PERCENTAGE: 100
         CONTAINER_RUNTIME: docker
         ##Select true if you want to uninstall litmus after chaos
-        LITMUS_CLEANUP: true        
+        LITMUS_CLEANUP: true
 ```
 
 ## Environment Variabels

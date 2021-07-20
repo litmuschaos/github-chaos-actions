@@ -18,7 +18,7 @@ dir=${GOPATH}/src/github.com/litmuschaos/chaos-ci-lib
 
 if [ ! -d $dir ]
 then
-  git clone -b v0.3.1 --single-branch https://github.com/litmuschaos/chaos-ci-lib.git
+  git clone -b v0.4.0 --single-branch https://github.com/litmuschaos/chaos-ci-lib.git
 fi
 cd chaos-ci-lib
 
@@ -30,13 +30,13 @@ fi
 
 if [ "$EXPERIMENT_NAME" == "all" ]; then
 ## Run all BDDs 
-  cd tests
+  cd experiments
   ginkgo -nodes=${PARALLEL_EXECUTION}
   cd ..
 
 elif [ ! -z "$EXPERIMENT_NAME" ]; then
 ## Run the selected chaos experiment
-  go test tests/${EXPERIMENT_NAME}_test.go -v -count=1 -timeout=${TEST_TIMEOUT}s
+  go test experiments/${EXPERIMENT_NAME}_test.go -v -count=1 -timeout=${TEST_TIMEOUT}s
 fi
 
 ##litmus cleanup
