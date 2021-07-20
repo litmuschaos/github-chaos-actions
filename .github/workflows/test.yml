@@ -25,7 +25,7 @@ jobs:
 
       - name: Deploy a sample application for chaos injection
         run: |
-          kubectl apply -f https://raw.githubusercontent.com/litmuschaos/chaos-ci-lib/v0.4.x/app/nginx.yml
+          kubectl apply -f https://raw.githubusercontent.com/litmuschaos/chaos-ci-lib/master/app/nginx.yml
           kubectl wait --for=condition=Ready pods --all --namespace default --timeout=60s
           
       - name: Setting up kubeconfig ENV for Github Chaos Action
