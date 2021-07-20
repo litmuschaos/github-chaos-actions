@@ -34,12 +34,12 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
       - name: Setup Litmus
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           INSTALL_LITMUS: true    
 
       - name: Running Litmus pod delete chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: pod-delete
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -47,7 +47,7 @@ jobs:
           JOB_CLEANUP_POLICY: delete 
 
       - name: Running container kill chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: container-kill
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -56,7 +56,7 @@ jobs:
           CONTAINER_RUNTIME: containerd
 
       - name: Running node-cpu-hog chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: node-cpu-hog
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -65,7 +65,7 @@ jobs:
 
 
       - name: Running node-memory-hog chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: node-memory-hog
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -73,7 +73,7 @@ jobs:
           JOB_CLEANUP_POLICY: delete        
           
       - name: Running pod-cpu-hog chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: pod-cpu-hog
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -84,7 +84,7 @@ jobs:
           CPU_CORES: 1
 
       - name: Running pod-memory-hog chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: pod-memory-hog
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -95,7 +95,7 @@ jobs:
           MEMORY_CONSUMPTION: 500  
           
       - name: Running pod network corruption chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: pod-network-corruption
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -107,7 +107,7 @@ jobs:
           CONTAINER_RUNTIME: containerd 
 
       - name: Running pod network duplication chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: pod-network-duplication
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -119,7 +119,7 @@ jobs:
           CONTAINER_RUNTIME: containerd     
         
       - name: Running pod-network-latency chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: pod-network-latency
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -132,7 +132,7 @@ jobs:
           CONTAINER_RUNTIME: containerd              
 
       - name: Running pod-network-loss chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: pod-network-loss
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -145,7 +145,7 @@ jobs:
           CONTAINER_RUNTIME: containerd
 
       - name: Running pod autoscaler chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: pod-autoscaler
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -154,7 +154,7 @@ jobs:
           TOTAL_CHAOS_DURATION: 60       
         
       - name: Running node-io-stress chaos experiment
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:
           EXPERIMENT_NAME: node-io-stress
           EXPERIMENT_IMAGE: litmuschaos/go-runner
@@ -164,7 +164,7 @@ jobs:
           FILESYSTEM_UTILIZATION_PERCENTAGE: 10                 
 
       - name: Uninstall Litmus
-        uses: litmuschaos/github-chaos-actions@v0.4.x
+        uses: litmuschaos/github-chaos-actions@master
         env:          
           LITMUS_CLEANUP: true
 
