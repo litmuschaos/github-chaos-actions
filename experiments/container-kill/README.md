@@ -1,11 +1,10 @@
 # Container Kill Experiment
 
-This experiment executes SIGKILL on container of random replicas of an application deployment. It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflows of an application. Check <a href="https://docs.litmuschaos.io/docs/container-kill/">container kill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment executes SIGKILL on container of random replicas of an application deployment. It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflows of an application. Check <a href="https://docs.litmuschaos.io/docs/container-kill/">container kill docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>.
 
-#### Sample workflow 
+#### Sample workflow
 
 A Sample workflow to run the container-kill experiment:
-
 
 `.github/workflows/main.yml`
 
@@ -14,38 +13,38 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-    
     runs-on: ubuntu-latest
-      
-    - name: Running container kill chaos experiment
-      uses: litmuschaos/github-chaos-actions@v0.3.1
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        ##If litmus is not installed
-        INSTALL_LITMUS: true
-        ##Give application info under chaos
-        APP_NS: default
-        APP_LABEL: run=nginx
-        APP_KIND: deployment
-        EXPERIMENT_NAME: container-kill
-        ##Custom images can also be used
-        EXPERIMENT_IMAGE: litmuschaos/go-runner
-        EXPERIMENT_IMAGE_TAG: latest
-        IMAGE_PULL_POLICY: Always
-        TARGET_CONTAINER: nginx
-        TOTAL_CHAOS_DURATION: 20
-        CHAOS_INTERVAL: 10
-        CONTAINER_RUNTIME: docker
-        ##Select true if you want to uninstall litmus after chaos
-        LITMUS_CLEANUP: true        
+    steps:
+      - name: Running container kill chaos experiment
+        uses: litmuschaos/github-chaos-actions@v0.4.0
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+          ##If litmus is not installed
+          INSTALL_LITMUS: true
+          ##Give application info under chaos
+          APP_NS: default
+          APP_LABEL: run=nginx
+          APP_KIND: deployment
+          EXPERIMENT_NAME: container-kill
+          ##Custom images can also be used
+          EXPERIMENT_IMAGE: litmuschaos/go-runner
+          EXPERIMENT_IMAGE_TAG: latest
+          IMAGE_PULL_POLICY: Always
+          TARGET_CONTAINER: nginx
+          TOTAL_CHAOS_DURATION: 20
+          CHAOS_INTERVAL: 10
+          CONTAINER_RUNTIME: docker
+          ##Select true if you want to uninstall litmus after chaos
+          LITMUS_CLEANUP: true
 ```
+
 ## Environment Variabels
 
-The application pod for container-kill will be identified with the app info variables. 
+The application pod for container-kill will be identified with the app info variables.
 
 **Supported Chaos Action Tunables**
 
