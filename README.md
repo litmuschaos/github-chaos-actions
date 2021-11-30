@@ -82,6 +82,13 @@ jobs:
           EXPERIMENT_IMAGE: litmuschaos/go-runner
           EXPERIMENT_IMAGE_TAG: latest
           JOB_CLEANUP_POLICY: delete
+          APP_NS: default
+          APP_LABEL: run=nginx
+          APP_KIND: deployment
+          IMAGE_PULL_POLICY: Always
+          TOTAL_CHAOS_DURATION: 30
+          CHAOS_INTERVAL: 10
+          FORCE: false
 
       - name: Uninstall Litmus
         if: always()
@@ -141,6 +148,13 @@ jobs:
           EXPERIMENT_IMAGE: litmuschaos/go-runner
           EXPERIMENT_IMAGE_TAG: latest
           JOB_CLEANUP_POLICY: delete
+          APP_NS: default
+          APP_LABEL: run=nginx
+          APP_KIND: deployment
+          IMAGE_PULL_POLICY: Always
+          TOTAL_CHAOS_DURATION: 30
+          CHAOS_INTERVAL: 10
+          FORCE: false
 
       - name: Uninstall Litmus
         if: always()
