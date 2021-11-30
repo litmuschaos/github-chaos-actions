@@ -1,8 +1,8 @@
 # Pod Network Duplication Experiment
 
-This chaos action Injects packet dupication on the specified container by starting a traffic control (tc) process with netem rules to add disrupt network connectivity to kubernetes pods. Check <a href="https://docs.litmuschaos.io/docs/pod-network-duplication/">pod network duplication docs</a> for more info.To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This chaos action Injects packet dupication on the specified container by starting a traffic control (tc) process with netem rules to add disrupt network connectivity to kubernetes pods. Check <a href="https://docs.litmuschaos.io/docs/pod-network-duplication/">pod network duplication docs</a> for more info.To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>.
 
-#### Sample workflow 
+#### Sample workflow
 
 A Sample workflow to run pod network duplication experiment:
 
@@ -15,11 +15,11 @@ on:
     branches: [ master ]
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
-      
+    steps:
     - name: Running pod network duplication chaos experiment
-      uses: litmuschaos/github-chaos-actions@v0.3.1
+      uses: litmuschaos/github-chaos-actions@v0.4.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -32,13 +32,13 @@ jobs:
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/go-runner
         EXPERIMENT_IMAGE_TAG: latest
-        IMAGE_PULL_POLICY: Always      
+        IMAGE_PULL_POLICY: Always
         TARGET_CONTAINER: nginx
         TOTAL_CHAOS_DURATION: 60
         NETWORK_INTERFACE: eth0
         CONTAINER_RUNTIME: docker
         ##Select true if you want to uninstall litmus after chaos
-        LITMUS_CLEANUP: true        
+        LITMUS_CLEANUP: true
 ```
 
 ## Environment Variabels
@@ -133,4 +133,3 @@ The application pod for pod-network-duplication will be identified with the app 
     <td> Default value is Always </td>
   </tr>  
 </table>
-

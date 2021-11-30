@@ -1,8 +1,8 @@
 # Node CPU Hog Experiment
 
-This experiment causes CPU resource exhaustion on the Kubernetes node. The experiment aims to verify the resiliency of applications whose replicas may be evicted on account on nodes turning unschedulable (Not Ready) due to lack of CPU resources. Check <a href="https://docs.litmuschaos.io/docs/node-cpu-hog/">node cpu hog docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment causes CPU resource exhaustion on the Kubernetes node. The experiment aims to verify the resiliency of applications whose replicas may be evicted on account on nodes turning unschedulable (Not Ready) due to lack of CPU resources. Check <a href="https://docs.litmuschaos.io/docs/node-cpu-hog/">node cpu hog docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>.
 
-#### Sample workflow 
+#### Sample workflow
 
 A Sample workflow to run node-cpu-hog experiment:
 
@@ -17,11 +17,11 @@ on:
 
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
-      
+    steps:
     - name: Running node-cpu-hog chaos experiment
-      uses: litmuschaos/github-chaos-actions@v0.3.1
+      uses: litmuschaos/github-chaos-actions@v0.4.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -34,11 +34,11 @@ jobs:
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/go-runner
         EXPERIMENT_IMAGE_TAG: latest
-        IMAGE_PULL_POLICY: Always      
+        IMAGE_PULL_POLICY: Always
         TOTAL_CHAOS_DURATION: 60
         NODE_CPU_CORE: 2
         ##Select true if you want to uninstall litmus after chaos
-        LITMUS_CLEANUP: true        
+        LITMUS_CLEANUP: true
 ```
 
 ## Environment Variabels

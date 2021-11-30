@@ -1,8 +1,8 @@
 # Pod Delete Experiment
 
-This experiment causes (forced/graceful) pod failure of random replicas of an application deployment. It tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod. Check <a href="https://docs.litmuschaos.io/docs/pod-delete/">pod delete docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>. 
+This experiment causes (forced/graceful) pod failure of random replicas of an application deployment. It tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod. Check <a href="https://docs.litmuschaos.io/docs/pod-delete/">pod delete docs</a> for more info. To know more and get started with chaos-actions visit <a href="https://github.com/litmuschaos/github-chaos-actions/blob/master/README.md">github-chaos-actions</a>.
 
-#### Sample workflow 
+#### Sample workflow
 
 A Sample workflow to run pod delete experiment:
 
@@ -17,11 +17,11 @@ on:
 
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
-          
+    steps:
     - name: Running pod delete chaos experiment
-      uses: litmuschaos/github-chaos-actions@v0.3.1
+      uses: litmuschaos/github-chaos-actions@v0.4.0
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         ##If litmus is not installed
@@ -34,7 +34,7 @@ jobs:
         ##Custom images can also be used
         EXPERIMENT_IMAGE: litmuschaos/go-runner
         EXPERIMENT_IMAGE_TAG: latest
-        IMAGE_PULL_POLICY: Always     
+        IMAGE_PULL_POLICY: Always
         TOTAL_CHAOS_DURATION: 30
         CHAOS_INTERVAL: 10
         FORCE: false
@@ -45,7 +45,6 @@ jobs:
 ## Environment Variabels
 
 The application pod for pod-delete will be identified with the app info variables.
-
 
 **Supported Chaos Action Tunables**
 
