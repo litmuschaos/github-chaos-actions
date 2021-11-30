@@ -112,12 +112,6 @@ on:
 jobs:
   chaos-action:
     runs-on: ubuntu-latest
-    # AWS secrets are required to configure & run chaos
-    env:
-      AWS_SECRET_ACCESS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -248,11 +242,13 @@ Setup AWS Credentials using [GitHub secrets](https://docs.github.com/en/actions/
 jobs:
   chaos-action:
     runs-on: ubuntu-latest
-    # AWS secrets are required to configure & run chaos
-    env:
-      AWS_SECRET_ACCESS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 ```
 
-> Note: Either these secrets can be setup at Job level or have to be provided in all chaos-action steps.
+> Note: Either the secrets can be setup like mentioned above & passed to all steps or have to be provided in all chaos-action steps as ENVs.
