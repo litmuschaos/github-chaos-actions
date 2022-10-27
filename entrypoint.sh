@@ -28,7 +28,7 @@ fi
 
 if [ ! -d $dir ]
 then
-  git clone https://github.com/litmuschaos/chaos-ci-lib.git
+  git clone https://github.com/merkata/chaos-ci-lib.git
 fi
 cd chaos-ci-lib
 
