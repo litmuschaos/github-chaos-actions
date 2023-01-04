@@ -45,8 +45,12 @@ if [ "$EXPERIMENT_NAME" == "all" ]; then
   cd ..
 
 elif [ ! -z "$EXPERIMENT_NAME" ]; then
-## Run the selected chaos experiment
-  go test experiments/${EXPERIMENT_NAME}_test.go -v -count=1 -timeout=${TEST_TIMEOUT}s
+## Run the selected chaos experiment(s)
+  IFS=' ' read -r -a experiments <<< "$EXPERIMENT_NAME"
+  for experiment in "${experiments[@]}"
+  do
+    go test experiments/"${experiment}"_test.go -v -count=1 -timeout=${TEST_TIMEOUT}s
+  done
 fi
 
 ##litmus cleanup
