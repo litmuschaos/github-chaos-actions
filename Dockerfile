@@ -23,7 +23,7 @@ RUN chmod +x /usr/local/bin/kubectl
 RUN apt-get update && apt-get install -y git \
     curl \
     unzip \
-    python3-pip \
+    pipx \
     && apt-get clean
 
 RUN apt-get update && \
@@ -35,7 +35,7 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     unzip awscliv2.zip && \
     ./aws/install
 
-RUN pip install oci-cli
+RUN pipx install oci-cli==3.29.0
 
 COPY README.md /
 COPY entrypoint.sh /entrypoint.sh
