@@ -80,12 +80,12 @@ jobs:
         env:
           EXPERIMENT_NAME: pod-delete
           EXPERIMENT_IMAGE: litmuschaos/go-runner
-          EXPERIMENT_IMAGE_TAG: latest
+          EXPERIMENT_IMAGE_TAG: 3.18.0
           JOB_CLEANUP_POLICY: delete
           APP_NS: default
           APP_LABEL: run=nginx
           APP_KIND: deployment
-          IMAGE_PULL_POLICY: Always
+           
           TOTAL_CHAOS_DURATION: 30
           CHAOS_INTERVAL: 10
           FORCE: false
@@ -140,12 +140,12 @@ jobs:
         env:
           EXPERIMENT_NAME: pod-delete
           EXPERIMENT_IMAGE: litmuschaos/go-runner
-          EXPERIMENT_IMAGE_TAG: latest
+          EXPERIMENT_IMAGE_TAG: 3.18.0
           JOB_CLEANUP_POLICY: delete
           APP_NS: default
           APP_LABEL: run=nginx
           APP_KIND: deployment
-          IMAGE_PULL_POLICY: Always
+           
           TOTAL_CHAOS_DURATION: 30
           CHAOS_INTERVAL: 10
           FORCE: false
@@ -224,7 +224,7 @@ Some comman environment variables used for running the `github-chaos-actions` ar
     <td> EXPERIMENT_IMAGE_TAG </td>
     <td> We can set the image tag while using custom image for the chaos experiment </td>
     <td> Optional </td>
-    <td> Default value is latest </td>
+    <td> Default value is 3.18.0 </td>
   </tr>  
   <tr>
     <td>IMAGE_PULL_POLICY </td>
