@@ -1,0 +1,21 @@
+# Environment — may contain secrets
+.env
+.env.*
+!.env.example
+
+# Kubernetes credentials
+kubeconfig
+kubeconfig_*
+*.kubeconfig
+
+# Logs
+*.log
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
